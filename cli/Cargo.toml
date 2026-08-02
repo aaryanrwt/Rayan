@@ -1,0 +1,21 @@
+[package]
+name = "rayan"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rayan-core = { path = "../core" }
+rayan-parser = { path = "../parser" }
+rayan-compiler = { path = "../compiler" }
+rayan-lsp = { path = "../lsp" }
+rayan-daemon = { path = "../daemon" }
+rayan-commons-client = { path = "../network/commons" }
+rayan-tui = { path = "../tui" }
+rayan-agent = { path = "../agent" }
+
+anyhow.workspace = true
+tokio.workspace = true
+clap.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+serde_json.workspace = true

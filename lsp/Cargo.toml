@@ -1,0 +1,11 @@
+[package]
+name = "rayan-lsp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rayan-core = { path = "../core" }
+rayan-parser = { path = "../parser" }
+tower-lsp.workspace = true
+tokio.workspace = true
+tracing.workspace = true

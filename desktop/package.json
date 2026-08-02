@@ -1,0 +1,15 @@
+{
+  "name": "rayan-desktop",
+  "version": "1.0.0",
+  "description": "Desktop GUI for Rayan",
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}

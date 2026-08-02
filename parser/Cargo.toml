@@ -1,0 +1,10 @@
+[package]
+name = "rayan-parser"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rayan-core = { path = "../core" }
+winnow.workspace = true
+anyhow.workspace = true
+serde_json.workspace = true

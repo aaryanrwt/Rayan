@@ -1,0 +1,23 @@
+{
+  "name": "rayan-vscode",
+  "displayName": "Rayan Language Support",
+  "description": "Language support, syntax highlighting, and LSP for Rayan configurations",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "rayan",
+        "aliases": ["Rayan", "rayan"],
+        "extensions": [".rayan"]
+      }
+    ]
+  }
+}

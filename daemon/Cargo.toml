@@ -1,0 +1,13 @@
+[package]
+name = "rayan-daemon"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rayan-core = { path = "../core" }
+notify.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+anyhow.workspace = true
+rusqlite = { version = "0.29.0", features = ["bundled"] }
+serde = { workspace = true, features = ["derive"] }

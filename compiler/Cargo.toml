@@ -1,0 +1,8 @@
+[package]
+name = "rayan-compiler"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rayan-core = { path = "../core" }
+anyhow.workspace = true

@@ -1,0 +1,13 @@
+[package]
+name = "rayan-tui"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rayan-core = { path = "../core" }
+ratatui.workspace = true
+crossterm.workspace = true
+rusqlite = { version = "0.29.0", features = ["bundled"] }
+rayan-daemon = { path = "../daemon" }
+tokio.workspace = true
+anyhow.workspace = true
