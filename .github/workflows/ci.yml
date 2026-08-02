@@ -85,7 +85,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: sbom-json
-        path: '**/*bom.json'
+        path: '**/*.cdx.json'
         if-no-files-found: error
         retention-days: 7
 
@@ -108,5 +108,5 @@ jobs:
     - name: Publish Release
       uses: softprops/action-gh-release@v2
       with:
-        files: sbom-output/**/*bom.json
+        files: sbom-output/**/*.cdx.json
         generate_release_notes: true
