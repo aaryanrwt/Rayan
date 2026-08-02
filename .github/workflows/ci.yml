@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches: [ "main" ]
+    tags: [ "v*" ]
   pull_request:
     branches: [ "main" ]
 
@@ -78,22 +79,23 @@ jobs:
       run: cargo install cargo-cyclonedx
 
     - name: Generate SBOM
-      run: cargo cyclonedx --format json
+      run: cargo cyclonedx --format json --all
 
     - name: Upload SBOM Artifact
       uses: actions/upload-artifact@v4
       with:
         name: sbom-json
-        path: bom.json
+        path: '**/*bom.json'
+        if-no-files-found: error
         retention-days: 7
 
   release:
-    name: Release Automation
+    name: GitHub Release
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: startsWith(github.ref, 'refs/tags/v')
     needs: [build-and-test, sbom]
     permissions:
-      contents: write # Required for GitHub Releases
+      contents: write # Required to create GitHub Release
     steps:
     - uses: actions/checkout@v4
     
@@ -101,8 +103,10 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: sbom-json
+        path: sbom-output
 
-    - name: Mock Release Output
-      run: |
-        echo "Ready to cut release."
-        echo "SBOM successfully propagated to release job."
+    - name: Publish Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: sbom-output/**/*bom.json
+        generate_release_notes: true
