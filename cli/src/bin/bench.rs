@@ -24,7 +24,10 @@ fn main() {
 
     let iterations = 10_000;
 
-    println!("Starting Rayan Core Benchmarks ({} iterations)...\n", iterations);
+    println!(
+        "Starting Rayan Core Benchmarks ({} iterations)...\n",
+        iterations
+    );
 
     // 1. Benchmark Parser
     let start = Instant::now();
