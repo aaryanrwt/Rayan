@@ -2,22 +2,39 @@ name: Security Audit
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Run daily
+    - cron: '0 0 * * *' # Run daily at midnight UTC
   push:
     paths:
       - '**/Cargo.lock'
+      - '**/Cargo.toml'
+  pull_request:
+    paths:
+      - '**/Cargo.lock'
+      - '**/Cargo.toml'
+
+permissions:
+  contents: read
+  issues: write
+  checks: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   security_audit:
+    name: Cargo Audit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       
-      - name: Install cargo-audit
-        uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: cargo-audit
-          
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+
       - name: Run cargo-audit
-        run: cargo audit
+        uses: rustsec/audit-check@v2.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
